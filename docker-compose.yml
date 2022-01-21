@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+
+  wordpress:
+    image: wordpress
+    ports:
+      - 80:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: digital_octane
+      WORDPRESS_DB_PASSWORD: digital_octane
+      WORDPRESS_DB_NAME: digital_octane
+    volumes:
+      - ./wordpress:/var/www/html
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: digital_octane
+      MYSQL_USER: digital_octane
+      MYSQL_PASSWORD: digital_octane
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
